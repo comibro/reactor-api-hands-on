@@ -42,10 +42,11 @@ public class Part01Flux {
 //========================================================================================
 
 	Flux<Long> counter() {
-		AtomicLong atomicLong = new AtomicLong(0);
-		return Flux.generate((SynchronousSink<Long> synchronousSink) -> synchronousSink.next(atomicLong.getAndIncrement()))
-				   .timeout(Duration.ofMillis(100))
-				   .takeUntil(n->n==9);
+//		AtomicLong atomicLong = new AtomicLong(0);
+//		return Flux.generate((SynchronousSink<Long> synchronousSink) -> synchronousSink.next(atomicLong.getAndIncrement()))
+//				   .timeout(Duration.ofMillis(100))
+//				   .takeUntil(n->n==9);
+		return Flux.range(0, 10).map(integer -> Long.valueOf(integer)).timeout(Duration.ofMillis(100));
 		}
 
 }
